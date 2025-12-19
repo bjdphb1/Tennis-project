@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- RuntimeIdentifier removed - will build for current platform (macOS/Linux/Windows) -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Libraries -->
+    <PackageReference Include="CsvHelper" Version="33.1.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.12.2" />
+    <PackageReference Include="Ini-Parser" Version="2.5.2" />
+    <PackageReference Include="DotNetEnv" Version="3.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="Selenium.Support" Version="4.12.1" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.12.1" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="116.0.5845.9600" />
+    <PackageReference Include="Serilog" Version="4.3.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+  </ItemGroup>
+
+  <!-- Exclude the Predictors subprojects from the main project's automatic recursive compile
+       so each Predictors/*.csproj builds its own sources separately. Without this, the SDK
+       includes all .cs files under the repository which caused duplicate Program/Assembly
+       attribute compilation errors. -->
+  <ItemGroup>
+    <!-- Prevent accidentally compiling build outputs or other project folders into this main project.
+         This avoids duplicate generated assembly attributes coming from embedded obj/bin folders. -->
+    <Compile Remove="**/bin/**" />
+    <Compile Remove="**/obj/**" />
+    <Compile Remove="Predictors/**" />
+  <Compile Remove="tools/**" />
+    <Compile Remove="tests/**" />
+    <None Remove="**/bin/**" />
+    <None Remove="**/obj/**" />
+  </ItemGroup>
+
+</Project>

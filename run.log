@@ -1,0 +1,835 @@
+/Users/msaif/Desktop/MyConsoleApp/MyConsoleApp.csproj : warning NU1701: Package 'ini-parser 2.5.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.
+/Users/msaif/Desktop/MyConsoleApp/MyConsoleApp.csproj : warning NU1701: Package 'ini-parser 2.5.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.
+[12:26:37 INF] ================== Start ==================
+[12:26:37 INF] === CLEANING UP OLD CYCLE FILES ===
+[12:26:37 INF] ✓ No old files to clean - starting fresh.
+[12:26:37 INF] 🔍 Validating predictor stake configuration...
+[12:26:37 WRN]   ⚠ Predictor1: No output file generated
+[12:26:37 WRN]   ⚠ Predictor2: No output file generated
+[12:26:37 INF] ✅ All predictors validated successfully
+[12:26:37 INF] Loaded 0 blocked matches (legacy) from blocked_matches.json
+Connection refused (localhost:58448)
+Connection refused (localhost:58448)
+Connection refused (localhost:58448)
+Connection refused (localhost:58448)
+Connection refused (localhost:58448)
+Connection refused (localhost:58448)
+Connection refused (localhost:58448)
+Connection refused (localhost:58448)
+Connection refused (localhost:58448)
+Connection refused (localhost:58448)
+Connection refused (localhost:58448)
+Connection refused (localhost:58448)
+[12:26:47 INF] Shared ChromeDriver initialized for Dexsport scraping
+[12:26:47 INF] Navigating to Dexsport tennis page for manual login...
+[12:27:00 INF] Please log in manually in the browser window. After login and page load, press ENTER in the terminal to continue scraping.
+
+>>> MANUAL LOGIN REQUIRED <<<
+>>> 1. Log in to Dexsport in the browser window
+>>> 2. Complete any email code or challenge
+>>> 3. Wait until the tennis matches are visible
+>>> 4. Then press ENTER here to continue...
+
+
+[12:30:57 INF] ✓ User confirmed manual login. Proceeding...
+[12:30:57 INF] === TESTING DEXSPORT SELENIUM SCRAPER ===
+[12:30:57 INF] Using shared ChromeDriver: skipping SetAuthentication to preserve manual login session.
+[12:30:57 INF] ✓ Already on tennis page, skipping navigation (keeping session)
+[12:30:59 INF] === WAITING FOR IFRAME WITH MATCH DATA ===
+[12:30:59 INF] ✓ Found 3 iframe(s) on page!
+[12:30:59 INF] ✓ Iframe found! Switching to iframe context...
+[12:31:02 INF] === WAITING FOR MATCH ELEMENTS INSIDE IFRAME ===
+[12:31:02 INF] ✓ Found 8 competitor name elements!
+[12:31:02 INF] ✓✓✓ Match elements successfully loaded!
+[12:31:02 INF] Waiting for all elements to stabilize...
+[12:31:07 INF] ================================================================================
+[12:31:07 INF] >>> ALL MATCH ELEMENTS LOADED - READY TO SCRAPE <<<
+[12:31:07 INF] >>> Iframe URL: https://dexsport.io/sports/tennis/
+[12:31:07 INF] ================================================================================
+[12:31:07 INF] Iframe source length: 433253 characters
+[12:31:07 INF] >>> Iframe HTML saved to: /Users/msaif/Desktop/MyConsoleApp/dexsport_iframe.html
+[12:31:07 INF] === EXTRACTING MATCH DATA (FROM IFRAME) ===
+[12:31:07 INF] Using JavaScript to query elements directly...
+[12:31:07 INF] JavaScript result: {"competitorNames":["Barthel Mona","Rakhimova Kamilla","Salkova Dominika","Ruzic Antonia","Reasco Gonzalez Mell Elizabeth","Giovannini Luisina","Parks Alycia","Korpatsch Tamara"],"competitorCount":8,"gridEventContent":4,"gridEvents":4,"gridEventPro":4,"lazyEventWrapper":4,"matches":[{"competitors":["Barthel Mona","Rakhimova Kamilla"],"odds":["2.12","1.66"],"link":"https://dexsport.io/sports?setIframePath=/tennis/barthel-mona-vs-rakhimova-kamilla-31620842/bets","startTime":"17:30","status":"upcoming"},{"competitors":["Salkova Dominika","Ruzic Antonia"],"odds":["2.66","1.43"],"link":"https://dexsport.io/sports?setIframePath=/tennis/salkova-dominika-vs-ruzic-antonia-31619557/bets","startTime":"20:05","status":"upcoming"},{"competitors":["Reasco Gonzalez Mell Elizabeth","Giovannini Luisina"],"odds":["5.30","1.13"],"link":"https://dexsport.io/sports?setIframePath=/tennis/reasco-gonzalez-mell-elizabeth-vs-giovannini-luisina-31592830/bets","startTime":"22:30","status":"upcoming"},{"competitors":["Parks Alycia","Korpatsch Tamara"],"odds":["1.63","2.16"],"link":"https://dexsport.io/sports?setIframePath=/tennis/parks-alycia-vs-korpatsch-tamara-31614318/bets","startTime":"22:35","status":"upcoming"}],"matchCount":4}
+[12:31:07 INF] ✓ JavaScript Element Counts:
+[12:31:07 INF]   - grid-event__content: 4
+[12:31:07 INF]   - grid-event: 4
+[12:31:07 INF]   - grid-event-pro: 4
+[12:31:07 INF]   - lazy-event-wrapper: 4
+[12:31:07 INF]   - Competitor names: 8
+[12:31:07 INF]   - Matches found: 4
+[12:31:07 INF] === MATCHES FROM JAVASCRIPT ===
+[12:31:07 INF] Match 1:
+[12:31:07 INF]   Players: Barthel Mona vs Rakhimova Kamilla
+[12:31:07 INF]   Odds: 2.12 / 1.66
+[12:31:07 INF]   Start Time: 17:30
+[12:31:07 INF]   Match Status: upcoming
+[12:31:07 INF]   Match ID: 31620842
+[12:31:07 INF]   Link: https://dexsport.io/sports?setIframePath=/tennis/barthel-mona-vs-rakhimova-kamilla-31620842/bets
+[12:31:07 INF] 
+[12:31:07 INF]   📝 Name Conversion:
+[12:31:07 INF]      Dexsport: 'Barthel Mona' → TennisAbstract: 'Mona Barthel'
+[12:31:07 INF]      Dexsport: 'Rakhimova Kamilla' → TennisAbstract: 'Kamilla Rakhimova'
+[12:31:07 INF] Match 2:
+[12:31:07 INF]   Players: Salkova Dominika vs Ruzic Antonia
+[12:31:07 INF]   Odds: 2.66 / 1.43
+[12:31:07 INF]   Start Time: 20:05
+[12:31:07 INF]   Match Status: upcoming
+[12:31:07 INF]   Match ID: 31619557
+[12:31:07 INF]   Link: https://dexsport.io/sports?setIframePath=/tennis/salkova-dominika-vs-ruzic-antonia-31619557/bets
+[12:31:07 INF] 
+[12:31:07 INF]   📝 Name Conversion:
+[12:31:07 INF]      Dexsport: 'Salkova Dominika' → TennisAbstract: 'Dominika Salkova'
+[12:31:07 INF]      Dexsport: 'Ruzic Antonia' → TennisAbstract: 'Antonia Ruzic'
+[12:31:07 INF] Match 3:
+[12:31:07 INF]   Players: Reasco Gonzalez Mell Elizabeth vs Giovannini Luisina
+[12:31:07 INF]   Odds: 5.30 / 1.13
+[12:31:07 INF]   Start Time: 22:30
+[12:31:07 INF]   Match Status: upcoming
+[12:31:07 INF]   Match ID: 31592830
+[12:31:07 INF]   Link: https://dexsport.io/sports?setIframePath=/tennis/reasco-gonzalez-mell-elizabeth-vs-giovannini-luisina-31592830/bets
+[12:31:07 INF] 
+[12:31:07 INF]   📝 Name Conversion:
+[12:31:07 INF]      Dexsport: 'Reasco Gonzalez Mell Elizabeth' → TennisAbstract: 'Elizabeth Reasco Gonzalez Mell'
+[12:31:07 INF]      Dexsport: 'Giovannini Luisina' → TennisAbstract: 'Luisina Giovannini'
+[12:31:07 INF] Match 4:
+[12:31:07 INF]   Players: Parks Alycia vs Korpatsch Tamara
+[12:31:07 INF]   Odds: 1.63 / 2.16
+[12:31:07 INF]   Start Time: 22:35
+[12:31:07 INF]   Match Status: upcoming
+[12:31:07 INF]   Match ID: 31614318
+[12:31:07 INF]   Link: https://dexsport.io/sports?setIframePath=/tennis/parks-alycia-vs-korpatsch-tamara-31614318/bets
+[12:31:07 INF] 
+[12:31:07 INF] 
+✓✓✓ Successfully created 4 MatchModel objects!
+[12:31:07 INF] 
+================================================================================
+[12:31:07 INF] 📋 PLAYER NAMES CONVERTED FOR TENNISABSTRACT
+[12:31:07 INF] ================================================================================
+[12:31:07 INF] These names will be checked against TennisAbstract API:
+[12:31:07 INF] URL format: https://www.tennisabstract.com/jsmatches/{FirstnameLastname}.js
+
+[12:31:07 INF]   1. Alycia Parks                   → URL: AlyciaParks.js
+[12:31:07 INF]   2. Antonia Ruzic                  → URL: AntoniaRuzic.js
+[12:31:07 INF]   3. Dominika Salkova               → URL: DominikaSalkova.js
+[12:31:07 INF]   4. Elizabeth Reasco Gonzalez Mell → URL: ElizabethReascoGonzalezMell.js
+[12:31:07 INF]   5. Kamilla Rakhimova              → URL: KamillaRakhimova.js
+[12:31:07 INF]   6. Luisina Giovannini             → URL: LuisinaGiovannini.js
+[12:31:07 INF]   7. Mona Barthel                   → URL: MonaBarthel.js
+[12:31:07 INF]   8. Tamara Korpatsch               → URL: TamaraKorpatsch.js
+[12:31:07 INF] 
+================================================================================
+[12:31:07 INF] Total unique players: 8
+[12:31:07 INF] Total matches: 4
+[12:31:07 INF] ================================================================================
+
+[12:31:07 INF] Selenium found 76 elements with 'grid-event' class
+[12:31:07 INF] Found 8 player name elements
+[12:31:07 INF] === SUCCESSFULLY FOUND 8 PLAYER NAMES ===
+[12:31:07 INF]   Player 1: Barthel Mona
+[12:31:07 INF]   Player 2: Rakhimova Kamilla
+[12:31:07 INF]   Player 3: Salkova Dominika
+[12:31:07 INF]   Player 4: Ruzic Antonia
+[12:31:07 INF]   Player 5: Reasco Gonzalez Mell Elizabeth
+[12:31:07 INF]   Player 6: Giovannini Luisina
+[12:31:07 INF]   Player 7: Parks Alycia
+[12:31:07 INF]   Player 8: Korpatsch Tamara
+[12:31:07 INF] === Found 4 potential matches ===
+[12:31:07 INF] === END EXTRACTION ===
+[12:31:07 INF] ✓✓✓ Successfully scraped 4 matches from Dexsport
+[12:31:07 INF] Dexsport Selenium test complete. Found 4 matches.
+[12:31:07 INF] === FIRST 5 MATCHES ===
+[12:31:07 INF] 1. Mona Barthel vs Kamilla Rakhimova
+[12:31:07 INF]    Odds: 2120.00 / 1660.00
+[12:31:07 INF] 2. Dominika Salkova vs Antonia Ruzic
+[12:31:07 INF]    Odds: 2660.00 / 1430.00
+[12:31:07 INF] 3. Elizabeth Reasco Gonzalez Mell vs Luisina Giovannini
+[12:31:07 INF]    Odds: 5300.00 / 1130.00
+[12:31:07 INF] 4. Alycia Parks vs Tamara Korpatsch
+[12:31:07 INF]    Odds: 1630.00 / 2160.00
+[12:31:07 INF] Shared external browser instance provided - not closing it.
+[12:31:07 INF] === END DEXSPORT TEST ===
+[12:31:07 INF] === SYNCING LIVE BALANCE ===
+[12:31:07 INF] ✓ Switched back to main page context for balance scraping
+[12:31:07 INF] Using shared ChromeDriver: skipping SetAuthentication to preserve manual login session.
+[12:31:07 INF] 📊 Fetching live balance from Dexsport...
+[12:31:07 INF] Navigating to profile page to fetch balance...
+[12:31:39 INF] ✓ Profile page loaded (waited 30s)
+[12:31:39 INF] ✅ Dexsport balance retrieved: $3.77 (selector: div[class*='ProfileBalance_profile-balance__val'])
+[12:31:39 INF] ✅ Live balance retrieved: PLAY_USD 3.77
+[12:31:39 INF] Shared external browser instance provided - not closing it.
+[12:31:39 INF] 💰 Initializing Balance Manager with live balance: $3.77
+[12:31:39 INF] Balance loaded from file: 100.00
+
+╔════════════════════════════════════════════════════╗
+║          LIVE BETTING DASHBOARD                    ║
+╠════════════════════════════════════════════════════╣
+║ Current Balance:     $                   100.00 PLAY_USD ║
+║ Starting Balance:    $                   100.00 PLAY_USD ║
+║ Total P/L:           $                     0.00       ║
+║ ROI:                                      0.00%      ║
+╠════════════════════════════════════════════════════╣
+║ Total Bets:                                       0       ║
+║ Wins:                                             0 ✅    ║
+║ Losses:                                           0 ❌    ║
+║ Timeouts:                                         0 ⏱️    ║
+║ Win Rate:                                      0.0%      ║
+╠════════════════════════════════════════════════════╣
+║ Total Profit:        $                     0.00       ║
+║ Total Loss:          $                     0.00       ║
+╠════════════════════════════════════════════════════╣
+║ Last Updated:        2025-12-05 12:31:39          ║
+╚════════════════════════════════════════════════════╝
+
+
+[12:31:39 INF] Dashboard displayed
+[12:31:39 INF] === END BALANCE SYNC ===
+[12:31:39 INF] Using shared ChromeDriver: skipping SetAuthentication to preserve manual login session.
+[12:31:39 INF] Navigating to Dexsport tennis page...
+[12:31:40 INF] ✓ Waiting 30 seconds for tennis page to fully load...
+[12:32:10 INF] ✓ Tennis page loaded, proceeding to scrape matches...
+[12:32:10 INF] === WAITING FOR IFRAME WITH MATCH DATA ===
+[12:32:10 INF] ✓ Found 3 iframe(s) on page!
+[12:32:10 INF] ✓ Iframe found! Switching to iframe context...
+[12:32:13 INF] === WAITING FOR MATCH ELEMENTS INSIDE IFRAME ===
+[12:32:13 INF] ✓ Found 8 competitor name elements!
+[12:32:13 INF] ✓✓✓ Match elements successfully loaded!
+[12:32:13 INF] Waiting for all elements to stabilize...
+[12:32:18 INF] ================================================================================
+[12:32:18 INF] >>> ALL MATCH ELEMENTS LOADED - READY TO SCRAPE <<<
+[12:32:18 INF] >>> Iframe URL: https://dexsport.io/sports/tennis/
+[12:32:18 INF] ================================================================================
+[12:32:18 INF] Iframe source length: 433215 characters
+[12:32:18 INF] >>> Iframe HTML saved to: /Users/msaif/Desktop/MyConsoleApp/dexsport_iframe.html
+[12:32:18 INF] === EXTRACTING MATCH DATA (FROM IFRAME) ===
+[12:32:18 INF] Using JavaScript to query elements directly...
+[12:32:18 INF] JavaScript result: {"competitorNames":["Barthel Mona","Rakhimova Kamilla","Salkova Dominika","Ruzic Antonia","Reasco Gonzalez Mell Elizabeth","Giovannini Luisina","Parks Alycia","Korpatsch Tamara"],"competitorCount":8,"gridEventContent":4,"gridEvents":4,"gridEventPro":4,"lazyEventWrapper":4,"matches":[{"competitors":["Barthel Mona","Rakhimova Kamilla"],"odds":["2.12","1.66"],"link":"https://dexsport.io/sports?setIframePath=/tennis/barthel-mona-vs-rakhimova-kamilla-31620842/bets","startTime":"17:30","status":"upcoming"},{"competitors":["Salkova Dominika","Ruzic Antonia"],"odds":["2.66","1.43"],"link":"https://dexsport.io/sports?setIframePath=/tennis/salkova-dominika-vs-ruzic-antonia-31619557/bets","startTime":"20:05","status":"upcoming"},{"competitors":["Reasco Gonzalez Mell Elizabeth","Giovannini Luisina"],"odds":["5.30","1.13"],"link":"https://dexsport.io/sports?setIframePath=/tennis/reasco-gonzalez-mell-elizabeth-vs-giovannini-luisina-31592830/bets","startTime":"22:30","status":"upcoming"},{"competitors":["Parks Alycia","Korpatsch Tamara"],"odds":["1.63","2.16"],"link":"https://dexsport.io/sports?setIframePath=/tennis/parks-alycia-vs-korpatsch-tamara-31614318/bets","startTime":"22:35","status":"upcoming"}],"matchCount":4}
+[12:32:18 INF] ✓ JavaScript Element Counts:
+[12:32:18 INF]   - grid-event__content: 4
+[12:32:18 INF]   - grid-event: 4
+[12:32:18 INF]   - grid-event-pro: 4
+[12:32:18 INF]   - lazy-event-wrapper: 4
+[12:32:18 INF]   - Competitor names: 8
+[12:32:18 INF]   - Matches found: 4
+[12:32:18 INF] === MATCHES FROM JAVASCRIPT ===
+[12:32:18 INF] Match 1:
+[12:32:18 INF]   Players: Barthel Mona vs Rakhimova Kamilla
+[12:32:18 INF]   Odds: 2.12 / 1.66
+[12:32:18 INF]   Start Time: 17:30
+[12:32:18 INF]   Match Status: upcoming
+[12:32:18 INF]   Match ID: 31620842
+[12:32:18 INF]   Link: https://dexsport.io/sports?setIframePath=/tennis/barthel-mona-vs-rakhimova-kamilla-31620842/bets
+[12:32:18 INF] 
+[12:32:18 INF]   📝 Name Conversion:
+[12:32:18 INF]      Dexsport: 'Barthel Mona' → TennisAbstract: 'Mona Barthel'
+[12:32:18 INF]      Dexsport: 'Rakhimova Kamilla' → TennisAbstract: 'Kamilla Rakhimova'
+[12:32:18 INF] Match 2:
+[12:32:18 INF]   Players: Salkova Dominika vs Ruzic Antonia
+[12:32:18 INF]   Odds: 2.66 / 1.43
+[12:32:18 INF]   Start Time: 20:05
+[12:32:18 INF]   Match Status: upcoming
+[12:32:18 INF]   Match ID: 31619557
+[12:32:18 INF]   Link: https://dexsport.io/sports?setIframePath=/tennis/salkova-dominika-vs-ruzic-antonia-31619557/bets
+[12:32:18 INF] 
+[12:32:18 INF]   📝 Name Conversion:
+[12:32:18 INF]      Dexsport: 'Salkova Dominika' → TennisAbstract: 'Dominika Salkova'
+[12:32:18 INF]      Dexsport: 'Ruzic Antonia' → TennisAbstract: 'Antonia Ruzic'
+[12:32:18 INF] Match 3:
+[12:32:18 INF]   Players: Reasco Gonzalez Mell Elizabeth vs Giovannini Luisina
+[12:32:18 INF]   Odds: 5.30 / 1.13
+[12:32:18 INF]   Start Time: 22:30
+[12:32:18 INF]   Match Status: upcoming
+[12:32:18 INF]   Match ID: 31592830
+[12:32:18 INF]   Link: https://dexsport.io/sports?setIframePath=/tennis/reasco-gonzalez-mell-elizabeth-vs-giovannini-luisina-31592830/bets
+[12:32:18 INF] 
+[12:32:18 INF]   📝 Name Conversion:
+[12:32:18 INF]      Dexsport: 'Reasco Gonzalez Mell Elizabeth' → TennisAbstract: 'Elizabeth Reasco Gonzalez Mell'
+[12:32:18 INF]      Dexsport: 'Giovannini Luisina' → TennisAbstract: 'Luisina Giovannini'
+[12:32:18 INF] Match 4:
+[12:32:18 INF]   Players: Parks Alycia vs Korpatsch Tamara
+[12:32:18 INF]   Odds: 1.63 / 2.16
+[12:32:18 INF]   Start Time: 22:35
+[12:32:18 INF]   Match Status: upcoming
+[12:32:18 INF]   Match ID: 31614318
+[12:32:18 INF]   Link: https://dexsport.io/sports?setIframePath=/tennis/parks-alycia-vs-korpatsch-tamara-31614318/bets
+[12:32:18 INF] 
+[12:32:18 INF] 
+✓✓✓ Successfully created 4 MatchModel objects!
+[12:32:18 INF] 
+================================================================================
+[12:32:18 INF] 📋 PLAYER NAMES CONVERTED FOR TENNISABSTRACT
+[12:32:18 INF] ================================================================================
+[12:32:18 INF] These names will be checked against TennisAbstract API:
+[12:32:18 INF] URL format: https://www.tennisabstract.com/jsmatches/{FirstnameLastname}.js
+
+[12:32:18 INF]   1. Alycia Parks                   → URL: AlyciaParks.js
+[12:32:18 INF]   2. Antonia Ruzic                  → URL: AntoniaRuzic.js
+[12:32:18 INF]   3. Dominika Salkova               → URL: DominikaSalkova.js
+[12:32:18 INF]   4. Elizabeth Reasco Gonzalez Mell → URL: ElizabethReascoGonzalezMell.js
+[12:32:18 INF]   5. Kamilla Rakhimova              → URL: KamillaRakhimova.js
+[12:32:18 INF]   6. Luisina Giovannini             → URL: LuisinaGiovannini.js
+[12:32:18 INF]   7. Mona Barthel                   → URL: MonaBarthel.js
+[12:32:18 INF]   8. Tamara Korpatsch               → URL: TamaraKorpatsch.js
+[12:32:18 INF] 
+================================================================================
+[12:32:18 INF] Total unique players: 8
+[12:32:18 INF] Total matches: 4
+[12:32:18 INF] ================================================================================
+
+[12:32:18 INF] Selenium found 76 elements with 'grid-event' class
+[12:32:18 INF] Found 8 player name elements
+[12:32:18 INF] === SUCCESSFULLY FOUND 8 PLAYER NAMES ===
+[12:32:18 INF]   Player 1: Barthel Mona
+[12:32:18 INF]   Player 2: Rakhimova Kamilla
+[12:32:18 INF]   Player 3: Salkova Dominika
+[12:32:18 INF]   Player 4: Ruzic Antonia
+[12:32:18 INF]   Player 5: Reasco Gonzalez Mell Elizabeth
+[12:32:18 INF]   Player 6: Giovannini Luisina
+[12:32:18 INF]   Player 7: Parks Alycia
+[12:32:18 INF]   Player 8: Korpatsch Tamara
+[12:32:18 INF] === Found 4 potential matches ===
+[12:32:18 INF] === END EXTRACTION ===
+[12:32:18 INF] ✓✓✓ Successfully scraped 4 matches from Dexsport
+[12:32:18 INF] Shared external browser instance provided - not closing it.
+[12:32:18 INF] Fetched 4 matches from Dexsport.
+[12:32:18 INF] Prefetching TennisAbstract data for 8 unique players (batch)...
+[12:32:25 INF] Prefetch complete. Cached results: 8
+[12:32:25 INF] === TASK 2: FILTERING VIABLE MATCHES ===
+[12:32:25 INF] Filtered out 0 doubles matches. 4 singles matches remaining.
+[12:32:25 INF] Checking: Barthel Mona vs Rakhimova Kamilla
+[12:32:25 INF] Starting with number of data columns: 222
+Main Thread: Barthel Mona
+[DEBUG] Used cached lookup for Barthel Mona — skipping network fetch.
+TOUR TEXT HEADER: Tour-Level Seasons&nbsp;&nbsp;&nbsp;Top
+TOUR YEARS TABLE FOUND: True
+ITF TEXT HEADER: ITF-Level Seasons&nbsp;&nbsp;&nbsp;Top
+ITF YEARS TABLE FOUND: True
+[DEBUG] Used prefetched JS fragment to extract details for Barthel Mona
+Main Thread: Player Found. dob='2025-12-01' hand='(null)' parsedAge=0
+Main Thread: ITF Data Found for Barthel Mona
+Main Thread: Tour-Level Split data found for Barthel Mona
+Main Thread: Rakhimova Kamilla
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/RakhimovaKamilla.js (attempt 1) — candidate=RakhimovaKamilla
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/RakhimovaKamilla.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/RakhimovaKamilla.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/RakhimovaKamilla.js (attempt 2) — candidate=RakhimovaKamilla
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/RakhimovaKamilla.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/RakhimovaKamilla.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/RakhimovaKamilla.js (attempt 1) — candidate=RakhimovaKamilla
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/RakhimovaKamilla.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/RakhimovaKamilla.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/RakhimovaKamilla.js (attempt 2) — candidate=RakhimovaKamilla
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/RakhimovaKamilla.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/RakhimovaKamilla.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/KamillaRakhimova.js (attempt 1) — candidate=KamillaRakhimova
+[DEBUG] HTTP Status: 200 OK for https://www.tennisabstract.com/jsfrags/KamillaRakhimova.js
+[DEBUG] Response snippet: var player_frag = `<p><h1 id="recent-results-h">Recent Results&nbsp;&nbsp;&nbsp;<span style="font-size:16px"><a href="https://www.tennisabstract.com/cgi-bin/wplayer-classic.cgi?p=KamillaRakhimova">All results</a> | <a href="#top">Top</a></s
+[DEBUG] Extracted HTML successfully from https://www.tennisabstract.com/jsfrags/KamillaRakhimova.js
+TOUR TEXT HEADER: Tour-Level Seasons&nbsp;&nbsp;&nbsp;Top
+TOUR YEARS TABLE FOUND: True
+ITF TEXT HEADER: ITF-Level Seasons&nbsp;&nbsp;&nbsp;Top
+ITF YEARS TABLE FOUND: True
+[DEBUG] Attempting to fetch player details from https://www.tennisabstract.com/jsfrags/KamillaRakhimova.js (attempt 1)
+[DEBUG] Player details fetched from https://www.tennisabstract.com/jsfrags/KamillaRakhimova.js
+Main Thread: Player Found. dob='2025-12-01' hand='(null)' parsedAge=0
+Main Thread: ITF Data Found for Rakhimova Kamilla
+Main Thread: Tour-Level Split data found for Rakhimova Kamilla
+[12:32:45 WRN] Adding missing data column dynamically (pre-row): 221 -> ExtraCol_221
+[12:32:45 INF] 2120
+[12:32:45 INF] ✅ VIABLE: Barthel Mona vs Rakhimova Kamilla (Both players found in TennisAbstract)
+[12:32:45 INF] Checking: Salkova Dominika vs Ruzic Antonia
+[12:32:45 INF] Starting with number of data columns: 222
+Main Thread: Salkova Dominika
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/SalkovaDominika.js (attempt 1) — candidate=SalkovaDominika
+[DEBUG] Fetch failed for https://www.tennisabstract.com/jsfrags/SalkovaDominika.js (attempt 1): The proxy tunnel request to proxy 'http://geo.iproyal.com:12321/' failed with status code '502'."
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/SalkovaDominika.js (attempt 2) — candidate=SalkovaDominika
+[12:33:00 WRN] GetDataAsync for Salkova Dominika timed out after 15s
+[12:33:00 WRN]   ⚠ Salkova Dominika not found in TennisAbstract or timed out
+[12:33:00 INF] ❌ Skipped: Salkova Dominika vs Ruzic Antonia (Player data not found in TennisAbstract)
+[12:33:00 INF] Checking: Reasco Gonzalez Mell Elizabeth vs Giovannini Luisina
+[12:33:00 INF] Starting with number of data columns: 222
+Main Thread: Reasco Gonzalez Mell Elizabeth
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ReascoGonzalezMellElizabeth.js (attempt 1) — candidate=ReascoGonzalezMellElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/SalkovaDominika.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/SalkovaDominika.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/SalkovaDominika.js (attempt 1) — candidate=SalkovaDominika
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/SalkovaDominika.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/SalkovaDominika.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/SalkovaDominika.js (attempt 2) — candidate=SalkovaDominika
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/SalkovaDominika.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/SalkovaDominika.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/DominikaSalkova.js (attempt 1) — candidate=DominikaSalkova
+[DEBUG] HTTP Status: 200 OK for https://www.tennisabstract.com/jsfrags/DominikaSalkova.js
+[DEBUG] Response snippet: var player_frag = `<p><h1 id="recent-results-h">Recent Results&nbsp;&nbsp;&nbsp;<span style="font-size:16px"><a href="https://www.tennisabstract.com/cgi-bin/wplayer-classic.cgi?p=DominikaSalkova">All results</a> | <a href="#top">Top</a></sp
+[DEBUG] Extracted HTML successfully from https://www.tennisabstract.com/jsfrags/DominikaSalkova.js
+TOUR TEXT HEADER: Tour-Level Seasons&nbsp;&nbsp;&nbsp;Top
+TOUR YEARS TABLE FOUND: True
+ITF TEXT HEADER: ITF-Level Seasons&nbsp;&nbsp;&nbsp;Top
+ITF YEARS TABLE FOUND: True
+[DEBUG] Attempting to fetch player details from https://www.tennisabstract.com/jsfrags/DominikaSalkova.js (attempt 1)
+[DEBUG] Player details fetched from https://www.tennisabstract.com/jsfrags/DominikaSalkova.js
+Main Thread: Player Found. dob='2025-12-01' hand='(null)' parsedAge=0
+Main Thread: ITF Data Found for Salkova Dominika
+Main Thread: Tour-Level Split data found for Salkova Dominika
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ReascoGonzalezMellElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ReascoGonzalezMellElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ReascoGonzalezMellElizabeth.js (attempt 2) — candidate=ReascoGonzalezMellElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ReascoGonzalezMellElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ReascoGonzalezMellElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ReascoGonzalezMellElizabeth.js (attempt 1) — candidate=ReascoGonzalezMellElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ReascoGonzalezMellElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ReascoGonzalezMellElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ReascoGonzalezMellElizabeth.js (attempt 2) — candidate=ReascoGonzalezMellElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ReascoGonzalezMellElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ReascoGonzalezMellElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ReascoGonzalezElizabethMell.js (attempt 1) — candidate=ReascoGonzalezElizabethMell
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ReascoGonzalezElizabethMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ReascoGonzalezElizabethMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ReascoGonzalezElizabethMell.js (attempt 2) — candidate=ReascoGonzalezElizabethMell
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ReascoGonzalezElizabethMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ReascoGonzalezElizabethMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ReascoGonzalezElizabethMell.js (attempt 1) — candidate=ReascoGonzalezElizabethMell
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ReascoGonzalezElizabethMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ReascoGonzalezElizabethMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ReascoGonzalezElizabethMell.js (attempt 2) — candidate=ReascoGonzalezElizabethMell
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ReascoGonzalezElizabethMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ReascoGonzalezElizabethMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ReascoMellGonzalezElizabeth.js (attempt 1) — candidate=ReascoMellGonzalezElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ReascoMellGonzalezElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ReascoMellGonzalezElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ReascoMellGonzalezElizabeth.js (attempt 2) — candidate=ReascoMellGonzalezElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ReascoMellGonzalezElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ReascoMellGonzalezElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ReascoMellGonzalezElizabeth.js (attempt 1) — candidate=ReascoMellGonzalezElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ReascoMellGonzalezElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ReascoMellGonzalezElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ReascoMellGonzalezElizabeth.js (attempt 2) — candidate=ReascoMellGonzalezElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ReascoMellGonzalezElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ReascoMellGonzalezElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ReascoMellElizabethGonzalez.js (attempt 1) — candidate=ReascoMellElizabethGonzalez
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ReascoMellElizabethGonzalez.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ReascoMellElizabethGonzalez.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ReascoMellElizabethGonzalez.js (attempt 2) — candidate=ReascoMellElizabethGonzalez
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ReascoMellElizabethGonzalez.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ReascoMellElizabethGonzalez.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ReascoMellElizabethGonzalez.js (attempt 1) — candidate=ReascoMellElizabethGonzalez
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ReascoMellElizabethGonzalez.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ReascoMellElizabethGonzalez.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ReascoMellElizabethGonzalez.js (attempt 2) — candidate=ReascoMellElizabethGonzalez
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ReascoMellElizabethGonzalez.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ReascoMellElizabethGonzalez.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ReascoElizabethGonzalezMell.js (attempt 1) — candidate=ReascoElizabethGonzalezMell
+[12:33:15 WRN] GetDataAsync for Reasco Gonzalez Mell Elizabeth timed out after 15s
+[12:33:15 WRN]   ⚠ Reasco Gonzalez Mell Elizabeth not found in TennisAbstract or timed out
+[12:33:15 INF] ❌ Skipped: Reasco Gonzalez Mell Elizabeth vs Giovannini Luisina (Player data not found in TennisAbstract)
+[12:33:15 INF] Checking: Parks Alycia vs Korpatsch Tamara
+[12:33:15 INF] Starting with number of data columns: 222
+Main Thread: Parks Alycia
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ReascoElizabethGonzalezMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ReascoElizabethGonzalezMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ReascoElizabethGonzalezMell.js (attempt 2) — candidate=ReascoElizabethGonzalezMell
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ReascoElizabethGonzalezMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ReascoElizabethGonzalezMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ReascoElizabethGonzalezMell.js (attempt 1) — candidate=ReascoElizabethGonzalezMell
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ReascoElizabethGonzalezMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ReascoElizabethGonzalezMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ReascoElizabethGonzalezMell.js (attempt 2) — candidate=ReascoElizabethGonzalezMell
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ParksAlycia.js (attempt 1) — candidate=ParksAlycia
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ReascoElizabethGonzalezMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ReascoElizabethGonzalezMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ReascoElizabethMellGonzalez.js (attempt 1) — candidate=ReascoElizabethMellGonzalez
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ReascoElizabethMellGonzalez.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ReascoElizabethMellGonzalez.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ReascoElizabethMellGonzalez.js (attempt 2) — candidate=ReascoElizabethMellGonzalez
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ReascoElizabethMellGonzalez.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ReascoElizabethMellGonzalez.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ReascoElizabethMellGonzalez.js (attempt 1) — candidate=ReascoElizabethMellGonzalez
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ReascoElizabethMellGonzalez.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ReascoElizabethMellGonzalez.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ReascoElizabethMellGonzalez.js (attempt 2) — candidate=ReascoElizabethMellGonzalez
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ParksAlycia.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ParksAlycia.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/ParksAlycia.js (attempt 2) — candidate=ParksAlycia
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ReascoElizabethMellGonzalez.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ReascoElizabethMellGonzalez.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/GonzalezReascoMellElizabeth.js (attempt 1) — candidate=GonzalezReascoMellElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/ParksAlycia.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/ParksAlycia.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ParksAlycia.js (attempt 1) — candidate=ParksAlycia
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ParksAlycia.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ParksAlycia.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/ParksAlycia.js (attempt 2) — candidate=ParksAlycia
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/ParksAlycia.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/ParksAlycia.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/AlyciaParks.js (attempt 1) — candidate=AlyciaParks
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/GonzalezReascoMellElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/GonzalezReascoMellElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/GonzalezReascoMellElizabeth.js (attempt 2) — candidate=GonzalezReascoMellElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/GonzalezReascoMellElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/GonzalezReascoMellElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/GonzalezReascoMellElizabeth.js (attempt 1) — candidate=GonzalezReascoMellElizabeth
+[DEBUG] HTTP Status: 200 OK for https://www.tennisabstract.com/jsfrags/AlyciaParks.js
+[DEBUG] Response snippet: var player_frag = `<p><h1 id="recent-results-h">Recent Results&nbsp;&nbsp;&nbsp;<span style="font-size:16px"><a href="https://www.tennisabstract.com/cgi-bin/wplayer-classic.cgi?p=AlyciaParks">All results</a> | <a href="#top">Top</a></span><
+[DEBUG] Extracted HTML successfully from https://www.tennisabstract.com/jsfrags/AlyciaParks.js
+TOUR TEXT HEADER: Tour-Level Seasons&nbsp;&nbsp;&nbsp;Top
+TOUR YEARS TABLE FOUND: True
+ITF TEXT HEADER: ITF-Level Seasons&nbsp;&nbsp;&nbsp;Top
+ITF YEARS TABLE FOUND: True
+[DEBUG] Attempting to fetch player details from https://www.tennisabstract.com/jsfrags/AlyciaParks.js (attempt 1)
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/GonzalezReascoMellElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/GonzalezReascoMellElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/GonzalezReascoMellElizabeth.js (attempt 2) — candidate=GonzalezReascoMellElizabeth
+[DEBUG] Player details fetched from https://www.tennisabstract.com/jsfrags/AlyciaParks.js
+Main Thread: Player Found. dob='2025-12-01' hand='(null)' parsedAge=0
+Main Thread: ITF Data Found for Parks Alycia
+Main Thread: Tour-Level Split data found for Parks Alycia
+Main Thread: Korpatsch Tamara
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/GonzalezReascoMellElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/GonzalezReascoMellElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/GonzalezReascoElizabethMell.js (attempt 1) — candidate=GonzalezReascoElizabethMell
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/GonzalezReascoElizabethMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/GonzalezReascoElizabethMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/GonzalezReascoElizabethMell.js (attempt 2) — candidate=GonzalezReascoElizabethMell
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/GonzalezReascoElizabethMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/GonzalezReascoElizabethMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/GonzalezReascoElizabethMell.js (attempt 1) — candidate=GonzalezReascoElizabethMell
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/KorpatschTamara.js (attempt 1) — candidate=KorpatschTamara
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/GonzalezReascoElizabethMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/GonzalezReascoElizabethMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/GonzalezReascoElizabethMell.js (attempt 2) — candidate=GonzalezReascoElizabethMell
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/GonzalezReascoElizabethMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/GonzalezReascoElizabethMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/GonzalezMellReascoElizabeth.js (attempt 1) — candidate=GonzalezMellReascoElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/GonzalezMellReascoElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/GonzalezMellReascoElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/GonzalezMellReascoElizabeth.js (attempt 2) — candidate=GonzalezMellReascoElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/GonzalezMellReascoElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/GonzalezMellReascoElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/GonzalezMellReascoElizabeth.js (attempt 1) — candidate=GonzalezMellReascoElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/KorpatschTamara.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/KorpatschTamara.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/KorpatschTamara.js (attempt 2) — candidate=KorpatschTamara
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/GonzalezMellReascoElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/GonzalezMellReascoElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/GonzalezMellReascoElizabeth.js (attempt 2) — candidate=GonzalezMellReascoElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/KorpatschTamara.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/KorpatschTamara.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/KorpatschTamara.js (attempt 1) — candidate=KorpatschTamara
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/GonzalezMellReascoElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/GonzalezMellReascoElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/GonzalezMellElizabethReasco.js (attempt 1) — candidate=GonzalezMellElizabethReasco
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/KorpatschTamara.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/KorpatschTamara.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/KorpatschTamara.js (attempt 2) — candidate=KorpatschTamara
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/KorpatschTamara.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/KorpatschTamara.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/TamaraKorpatsch.js (attempt 1) — candidate=TamaraKorpatsch
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/GonzalezMellElizabethReasco.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/GonzalezMellElizabethReasco.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/GonzalezMellElizabethReasco.js (attempt 2) — candidate=GonzalezMellElizabethReasco
+[DEBUG] HTTP Status: 200 OK for https://www.tennisabstract.com/jsfrags/TamaraKorpatsch.js
+[DEBUG] Response snippet: var player_frag = `<p><h1 id="recent-results-h">Recent Results&nbsp;&nbsp;&nbsp;<span style="font-size:16px"><a href="https://www.tennisabstract.com/cgi-bin/wplayer-classic.cgi?p=TamaraKorpatsch">All results</a> | <a href="#top">Top</a></sp
+[DEBUG] Extracted HTML successfully from https://www.tennisabstract.com/jsfrags/TamaraKorpatsch.js
+TOUR TEXT HEADER: Tour-Level Seasons&nbsp;&nbsp;&nbsp;Top
+TOUR YEARS TABLE FOUND: True
+ITF TEXT HEADER: ITF-Level Seasons&nbsp;&nbsp;&nbsp;Top
+ITF YEARS TABLE FOUND: True
+[DEBUG] Attempting to fetch player details from https://www.tennisabstract.com/jsfrags/TamaraKorpatsch.js (attempt 1)
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/GonzalezMellElizabethReasco.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/GonzalezMellElizabethReasco.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/GonzalezMellElizabethReasco.js (attempt 1) — candidate=GonzalezMellElizabethReasco
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/GonzalezMellElizabethReasco.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/GonzalezMellElizabethReasco.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/GonzalezMellElizabethReasco.js (attempt 2) — candidate=GonzalezMellElizabethReasco
+[DEBUG] Player details fetched from https://www.tennisabstract.com/jsfrags/TamaraKorpatsch.js
+Main Thread: Player Found. dob='2025-12-01' hand='(null)' parsedAge=0
+Main Thread: ITF Data Found for Korpatsch Tamara
+Main Thread: Tour-Level Split data found for Korpatsch Tamara
+[12:33:28 WRN] Adding missing data column dynamically (pre-row): 221 -> ExtraCol_221
+[12:33:28 INF] 1630
+[12:33:28 INF] ✅ VIABLE: Parks Alycia vs Korpatsch Tamara (Both players found in TennisAbstract)
+[12:33:28 INF] === FILTERING COMPLETE: 2 viable matches (out of 4 total) ===
+[12:33:28 INF] Cycle allocation: 10.00 (10% of 100.00)
+[12:33:28 INF] ==================== CYCLE A START ====================
+[12:33:28 INF] Preparing input CSV for cycle A: thread_1.csv
+[12:33:28 INF] Selected 1 matches for cycle A:
+[12:33:28 INF]   - MatchId: 31620842, Barthel Mona vs Rakhimova Kamilla, Odds: 2120/1660, CutOff: 2025-12-05T17:30:00.0000000Z
+[12:33:28 INF] Writing match to input CSV: Barthel Mona vs Rakhimova Kamilla
+[12:33:28 INF] Input CSV for cycle A written: thread_1.csv
+[12:33:28 INF] Running predictor: /Users/msaif/Desktop/MyConsoleApp/Predictors/Predictor1/bin/Release/net8.0/publish/Predictor1.dll (input: thread_1.csv, output: output_1.csv)
+[12:33:29 INF] Output: Predictor running...
+[12:33:29 INF] Reading predictor output: output_1.csv
+[12:33:29 INF]   Bet 1: Winner=0, Stake=10
+[12:33:29 INF]   Bet 2: Winner=0, Stake=10
+[12:33:29 INF]   Match 1: Barthel Mona vs Rakhimova Kamilla | Winner=0 | Stake=10 PLAY_USD
+[12:33:29 INF] Simulating bets for cycle A...
+[12:33:29 INF] [A] Waiting for browser access...
+[12:33:29 INF] [A] Browser access acquired. Placing bets...
+[12:33:29 INF] [CheckDict] Placing initial bets for 1 matches...
+[12:33:29 INF] Cycle allocation: 10.00 (10% of 100.00)
+[12:33:29 INF] Starting Cycle: 'B'
+[12:33:29 INF] ==================== CYCLE B START ====================
+[12:33:29 INF] Preparing input CSV for cycle B: thread_2.csv
+[12:33:29 INF] Selected 1 matches for cycle B:
+[12:33:29 INF]   - MatchId: 31614318, Parks Alycia vs Korpatsch Tamara, Odds: 1630/2160, CutOff: 2025-12-05T22:35:00.0000000Z
+[12:33:29 INF] Writing match to input CSV: Parks Alycia vs Korpatsch Tamara
+[12:33:29 INF] Input CSV for cycle B written: thread_2.csv
+[12:33:29 INF] Running predictor: /Users/msaif/Desktop/MyConsoleApp/Predictors/Predictor2/bin/Release/net8.0/publish/Predictor2.dll (input: thread_2.csv, output: output_2.csv)
+[12:33:29 INF] Using shared ChromeDriver: skipping SetAuthentication to preserve manual login session.
+[12:33:29 INF] Dexsport PlaceBet: Attempting to place bet for match 31620842
+[12:33:29 INF]   Player names from API: 'Barthel Mona' vs 'Rakhimova Kamilla'
+[12:33:29 INF]   Selection: home, Stake: 10, Odds: 2120
+[12:33:29 INF]   Navigating to match URL: https://dexsport.io/sports/tennis/barthel-mona-vs-rakhimova-kamilla-31620842/bets/
+[12:33:29 INF] Output: Predictor running...
+[12:33:29 INF] Reading predictor output: output_2.csv
+[12:33:29 INF]   Bet 1: Winner=0, Stake=10
+[12:33:29 INF]   Bet 2: Winner=0, Stake=10
+[12:33:29 INF]   Match 1: Parks Alycia vs Korpatsch Tamara | Winner=0 | Stake=10 PLAY_USD
+[12:33:29 INF] Simulating bets for cycle B...
+[12:33:29 INF] [B] Waiting for browser access...
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/GonzalezMellElizabethReasco.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/GonzalezMellElizabethReasco.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/GonzalezElizabethReascoMell.js (attempt 1) — candidate=GonzalezElizabethReascoMell
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/GonzalezElizabethReascoMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/GonzalezElizabethReascoMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/GonzalezElizabethReascoMell.js (attempt 2) — candidate=GonzalezElizabethReascoMell
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/GonzalezElizabethReascoMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/GonzalezElizabethReascoMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/GonzalezElizabethReascoMell.js (attempt 1) — candidate=GonzalezElizabethReascoMell
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/GonzalezElizabethReascoMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/GonzalezElizabethReascoMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/GonzalezElizabethReascoMell.js (attempt 2) — candidate=GonzalezElizabethReascoMell
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/GonzalezElizabethReascoMell.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/GonzalezElizabethReascoMell.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/GonzalezElizabethMellReasco.js (attempt 1) — candidate=GonzalezElizabethMellReasco
+[12:33:31 INF]   Waiting for page content to load (JavaScript rendering)...
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/GonzalezElizabethMellReasco.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/GonzalezElizabethMellReasco.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/GonzalezElizabethMellReasco.js (attempt 2) — candidate=GonzalezElizabethMellReasco
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/GonzalezElizabethMellReasco.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/GonzalezElizabethMellReasco.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/GonzalezElizabethMellReasco.js (attempt 1) — candidate=GonzalezElizabethMellReasco
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/GonzalezElizabethMellReasco.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/GonzalezElizabethMellReasco.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/GonzalezElizabethMellReasco.js (attempt 2) — candidate=GonzalezElizabethMellReasco
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/GonzalezElizabethMellReasco.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/GonzalezElizabethMellReasco.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/MellReascoGonzalezElizabeth.js (attempt 1) — candidate=MellReascoGonzalezElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/MellReascoGonzalezElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/MellReascoGonzalezElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/MellReascoGonzalezElizabeth.js (attempt 2) — candidate=MellReascoGonzalezElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/MellReascoGonzalezElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/MellReascoGonzalezElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/MellReascoGonzalezElizabeth.js (attempt 1) — candidate=MellReascoGonzalezElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/MellReascoGonzalezElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/MellReascoGonzalezElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/MellReascoGonzalezElizabeth.js (attempt 2) — candidate=MellReascoGonzalezElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/MellReascoGonzalezElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/MellReascoGonzalezElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/MellReascoElizabethGonzalez.js (attempt 1) — candidate=MellReascoElizabethGonzalez
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/MellReascoElizabethGonzalez.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/MellReascoElizabethGonzalez.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/MellReascoElizabethGonzalez.js (attempt 2) — candidate=MellReascoElizabethGonzalez
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/MellReascoElizabethGonzalez.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/MellReascoElizabethGonzalez.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/MellReascoElizabethGonzalez.js (attempt 1) — candidate=MellReascoElizabethGonzalez
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/MellReascoElizabethGonzalez.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/MellReascoElizabethGonzalez.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/MellReascoElizabethGonzalez.js (attempt 2) — candidate=MellReascoElizabethGonzalez
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/MellReascoElizabethGonzalez.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/MellReascoElizabethGonzalez.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/MellGonzalezReascoElizabeth.js (attempt 1) — candidate=MellGonzalezReascoElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/MellGonzalezReascoElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/MellGonzalezReascoElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/MellGonzalezReascoElizabeth.js (attempt 2) — candidate=MellGonzalezReascoElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/MellGonzalezReascoElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/MellGonzalezReascoElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/MellGonzalezReascoElizabeth.js (attempt 1) — candidate=MellGonzalezReascoElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/MellGonzalezReascoElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/MellGonzalezReascoElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/MellGonzalezReascoElizabeth.js (attempt 2) — candidate=MellGonzalezReascoElizabeth
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/MellGonzalezReascoElizabeth.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/MellGonzalezReascoElizabeth.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/MellGonzalezElizabethReasco.js (attempt 1) — candidate=MellGonzalezElizabethReasco
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/MellGonzalezElizabethReasco.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/MellGonzalezElizabethReasco.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/MellGonzalezElizabethReasco.js (attempt 2) — candidate=MellGonzalezElizabethReasco
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsfrags/MellGonzalezElizabethReasco.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsfrags/MellGonzalezElizabethReasco.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/MellGonzalezElizabethReasco.js (attempt 1) — candidate=MellGonzalezElizabethReasco
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/MellGonzalezElizabethReasco.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/MellGonzalezElizabethReasco.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsmatches/MellGonzalezElizabethReasco.js (attempt 2) — candidate=MellGonzalezElizabethReasco
+[DEBUG] HTTP Status: 404 NotFound for https://www.tennisabstract.com/jsmatches/MellGonzalezElizabethReasco.js
+[DEBUG] Response snippet: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"> <html><head> <title>404 Not Found</title> </head><body> <h1>Not Found</h1> <p>The requested URL was not found on this server.</p> <hr> <address>Apache/2.4.58 (Ubuntu) Server at www.tennisab
+[DEBUG] Could not extract HTML from https://www.tennisabstract.com/jsmatches/MellGonzalezElizabethReasco.js, trying next attempt/URL.
+[DEBUG] Fetching TennisAbstract JS URL: https://www.tennisabstract.com/jsfrags/MellElizabethReascoGonzalez.js (attempt 1) — candidate=MellElizabethReascoGonzalez
+[DEBUG] HTTP Status: 200 OK for https://www.tennisabstract.com/jsfrags/MellElizabethReascoGonzalez.js
+[DEBUG] Response snippet: var player_frag = `<p><h1 id="recent-results-h">Recent Results&nbsp;&nbsp;&nbsp;<span style="font-size:16px"><a href="https://www.tennisabstract.com/cgi-bin/wplayer-classic.cgi?p=MellElizabethReascoGonzalez">All results</a> | <a href="#top"
+[DEBUG] Extracted HTML successfully from https://www.tennisabstract.com/jsfrags/MellElizabethReascoGonzalez.js
+TOUR TEXT HEADER: Tour-Level Seasons&nbsp;&nbsp;&nbsp;Top
+TOUR YEARS TABLE FOUND: True
+ITF TEXT HEADER: ITF-Level Seasons&nbsp;&nbsp;&nbsp;Top
+ITF YEARS TABLE FOUND: True
+[DEBUG] Attempting to fetch player details from https://www.tennisabstract.com/jsfrags/MellElizabethReascoGonzalez.js (attempt 1)
+[DEBUG] Player details fetched from https://www.tennisabstract.com/jsfrags/MellElizabethReascoGonzalez.js
+Main Thread: Player Found. dob='2025-12-01' hand='(null)' parsedAge=0
+Main Thread: ITF Data Found for Reasco Gonzalez Mell Elizabeth
+Main Thread: ITF Split data found for Reasco Gonzalez Mell Elizabeth
+[12:34:31 INF]   Checking for iframe containing betting content...
+[12:34:31 INF]   Found 3 iframes on page
+[12:34:33 INF]   Iframe 0: Found 18 buttons
+[12:34:33 INF]   ✓ Switched to betting iframe #0
+[12:34:33 INF]   ✓ Betting buttons loaded
+[12:34:33 INF]   Looking for odds buttons on match page...
+[12:34:33 INF]   DEBUG: Found 18 total buttons on page
+[12:34:33 INF]   DEBUG: Found 265 total divs on page
+[12:34:33 INF]   DEBUG Button 0: text='︎Turn On Quick Bet', class='quick-bet__switcher-btn'
+[12:34:33 INF]   DEBUG Button 1: text='', class='sharebet__input-paste'
+[12:34:33 INF]   DEBUG Button 2: text='', class='sharebet__input-apply '
+[12:34:33 INF]   DEBUG Button 3: text='Enter Betslip code', class='sharebet__link'
+[12:34:33 INF]   DEBUG Button 4: text='1
+2.12', class='outcome equal _101'
+[12:34:33 INF]   DEBUG Button 5: text='2
+1.66', class='outcome equal _103'
+[12:34:33 INF]   DEBUG Button 6: text='', class='outcome equal _101'
+[12:34:33 INF]   DEBUG Button 7: text='', class='outcome equal _103'
+[12:34:33 INF]   DEBUG Button 8: text='', class='outcome equal _101'
+[12:34:33 INF]   DEBUG Button 9: text='', class='outcome equal _103'
+[12:34:33 INF]   Looking for odds button with player='Barthel Mona' or odds='2.12'
+[12:34:33 INF]   Selector '//button[.//span[contains(@class,'outcome__status') and contains(text(),'Barthel Mona')]]' found 4 buttons
+[12:34:33 INF]     Button: text='', class='outcome equal _101'
+[12:34:33 INF]     Button: text='', class='outcome equal _101'
+[12:34:33 INF]     Button: text='', class='outcome equal _101'
+[12:34:33 INF]     Button: text='', class='outcome equal _101'
+[12:34:33 INF]   Selector '//button[.//span[contains(text(),'Barthel Mona')]]' found 4 buttons
+[12:34:33 INF]     Button: text='', class='outcome equal _101'
+[12:34:33 INF]     Button: text='', class='outcome equal _101'
+[12:34:33 INF]     Button: text='', class='outcome equal _101'
+[12:34:34 INF]     Button: text='', class='outcome equal _101'
+[12:34:34 INF]   Selector '//button[contains(@class,'outcome')][.//span[contains(text(),'Barthel Mona')]]' found 4 buttons
+[12:34:34 INF]     Button: text='', class='outcome equal _101'
+[12:34:34 INF]     Button: text='', class='outcome equal _101'
+[12:34:34 INF]     Button: text='', class='outcome equal _101'
+[12:34:34 INF]     Button: text='', class='outcome equal _101'
+[12:34:34 INF]   Selector '//button[.//span[contains(@class,'outcome__number') and contains(text(),'2.12')]]' found 2 buttons
+[12:34:34 INF]     Button: text='1
+2.12', class='outcome equal _101'
+[12:34:34 INF]   ✓ Found matching odds button for Barthel Mona
+[12:34:35 INF]   ✓ Clicked odds button for Barthel Mona (native click)
+[12:34:35 INF]   Waiting for betslip to load...
+[12:34:40 INF]   ✓ Betslip loaded and visible
+[12:34:40 INF]   DEBUG: Found 1 total input elements on page
+[12:34:40 INF]   DEBUG Input: type='text', class='coupon__odd-input _with-maxbet', placeholder='', displayed=True, enabled=True
+[12:34:50 INF]   Stake selector '//input[@type='number']' found 0 inputs
+[12:34:50 INF]   Stake selector '//input[@type='text']' found 1 inputs
+[12:34:50 INF]   ✓ Found stake input using selector: '//input[@type='text']'
+[12:34:50 INF]   ✓ Entered stake: 10 USD
+[12:34:51 INF]   DEBUG: Found 17 total buttons after stake entry
+[12:34:51 INF]   DEBUG Button 0: text='MAX', class='btn coupon__maxbet-btn bets__item-footer-currency-max', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 1: text='', class='sharebet__coupon-btn', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 2: text='Place bet 10 USDT', class='btn coupon__placebet-btn _main _no-bg', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 3: text='1 2.12', class='outcome equal _101 active', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 4: text='2 1.66', class='outcome equal _103', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 5: text='Barthel Mona 2.12', class='outcome equal _101 active', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 6: text='Rakhimova Kamilla 1.66', class='outcome equal _103', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 7: text='Barthel Mona +1.5 1.44', class='outcome equal _101', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 8: text='Rakhimova Kamilla -1.5 2.60', class='outcome equal _103', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 9: text='2-0 3.50', class='outcome equal _111', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 10: text='2-1 4.50', class='outcome equal _111', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 11: text='0-2 2.65', class='outcome equal _111', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 12: text='1-2 3.80', class='outcome equal _111', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 13: text='Barthel Mona 2.00', class='outcome equal _101', displayed=True, enabled=True
+[12:34:51 INF]   DEBUG Button 14: text='Rakhimova Kamilla 1.74', class='outcome equal _103', displayed=True, enabled=True
+[12:34:51 INF]   Confirm selector '//button[contains(@class,'coupon__placebet-btn')]' found 1 buttons
+[12:34:51 INF]   ✓ Found confirm button
+[12:34:51 INF]   ✓ Clicked confirm/place bet button
+[12:34:51 INF]   ⏳ Waiting 10 seconds for bet processing...
+[12:35:01 INF]   🔍 Scanning page for error messages...
+[12:35:01 INF]   DEBUG: Betslip still visible = True
+[12:35:01 INF]   DEBUG: Found 130 text elements on page
+[12:35:02 INF]   DEBUG: Checked 96 text elements for error messages
+[12:35:02 INF] Shared external browser instance provided - not closing it.
+[12:35:02 INF] [Place] Match 31620842: initial status = PENDING_ACCEPTANCE (ref=PLACED)
+[12:35:02 INF] [PendingLoop] Checking 1 pending bets (cycle 1)...
+[12:35:02 WRN] LookupTicketStatusAsync exception: No browser instance available. Please provide a shared ChromeDriver.
+[12:35:02 INF] [PendingCheck] Match 31620842: status=PENDING_ACCEPTANCE
+[12:35:02 INF] [PendingLoop] 1 still pending. Waiting 90 seconds before next check.

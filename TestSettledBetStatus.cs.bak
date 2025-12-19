@@ -1,0 +1,664 @@
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading;
+
+namespace TennisScraper
+{
+    public class BetStatusTestRecord
+    {
+        [JsonPropertyName("LocalReference")]
+        public string LocalReference { get; set; }
+
+        [JsonPropertyName("RemoteReference")]
+        public string RemoteReference { get; set; }
+
+        [JsonPropertyName("ReferenceId")]
+        public string ReferenceId { get; set; }
+
+        [JsonPropertyName("EventId")]
+        public string EventId { get; set; }
+
+        [JsonPropertyName("Winner")]
+        public string Winner { get; set; }
+
+        [JsonPropertyName("Stake")]
+        public decimal Stake { get; set; }
+
+        [JsonPropertyName("Currency")]
+        public string Currency { get; set; }
+
+        [JsonPropertyName("Status")]
+        public string Status { get; set; }
+
+        [JsonPropertyName("TimestampUtc")]
+        public string TimestampUtc { get; set; }
+
+        [JsonPropertyName("CompletedAtUtc")]
+        public string CompletedAtUtc { get; set; }
+    }
+
+    public class SettledBetTestResult
+    {
+        [JsonPropertyName("Timestamp")]
+        public string Timestamp { get; set; }
+
+        [JsonPropertyName("BetId")]
+        public string BetId { get; set; }
+
+        [JsonPropertyName("EventId")]
+        public string EventId { get; set; }
+
+        [JsonPropertyName("StoredStatusRaw")]
+        public string StoredStatusRaw { get; set; }
+
+        [JsonPropertyName("UIStatusRaw")]
+        public string UIStatusRaw { get; set; }
+
+        [JsonPropertyName("StoredStatusParsed")]
+        public string StoredStatusParsed { get; set; }
+
+        [JsonPropertyName("UIStatusParsed")]
+        public string UIStatusParsed { get; set; }
+
+        [JsonPropertyName("StatusMatch")]
+        public bool StatusMatch { get; set; }
+
+        [JsonPropertyName("TestPassed")]
+        public bool TestPassed { get; set; }
+
+        [JsonPropertyName("Message")]
+        public string Message { get; set; }
+    }
+
+    public class TestSettledBetStatus
+    {
+        private IWebDriver driver;
+        private const string BET_ID_TO_TEST = "31859896";
+
+        public static void Main(string[] args)
+        {
+            var tester = new TestSettledBetStatus();
+            tester.RunTest();
+        }
+
+        public void RunTest()
+        {
+            try
+            {
+                Console.WriteLine("\n════════════════════════════════════════════════════════");
+                Console.WriteLine("  TEST: FETCH BET STATUS FROM DEXSPORT SETTLED TAB");
+                Console.WriteLine("════════════════════════════════════════════════════════\n");
+
+                // Step 1: Load stored data
+                Console.WriteLine("[STEP 1] Loading stored bet data from placed_bets.json...");
+                var storedBet = LoadStoredBet(BET_ID_TO_TEST);
+                if (storedBet == null)
+                {
+                    Console.WriteLine($"✗ ERROR: Bet {BET_ID_TO_TEST} not found in placed_bets.json");
+                    return;
+                }
+                Console.WriteLine($"✓ Found stored bet: {storedBet.ReferenceId}");
+                Console.WriteLine($"  EventId: {storedBet.EventId}");
+                Console.WriteLine($"  Stake: {storedBet.Stake} {storedBet.Currency}");
+                Console.WriteLine($"  Stored Status (first 80 chars): {(storedBet.Status.Length > 80 ? storedBet.Status.Substring(0, 80) + "..." : storedBet.Status)}\n");
+
+                // Step 2: Initialize Selenium
+                Console.WriteLine("[STEP 2] Initializing Selenium WebDriver...");
+                InitializeDriver();
+                Console.WriteLine($"✓ Chrome driver started\n");
+
+                // Step 3: Navigate to Dexsport Tennis page
+                Console.WriteLine("[STEP 3] Navigating to Dexsport Tennis page...");
+                driver.Navigate().GoToUrl("https://dexsport.io/sports/tennis/");
+                Thread.Sleep(3000);
+                Console.WriteLine($"✓ Navigated to Dexsport Tennis\n");
+
+                // Step 3b: WAIT FOR MANUAL LOGIN
+                Console.WriteLine("[STEP 3b] ⏳ WAITING FOR MANUAL LOGIN...");
+                Console.WriteLine("────────────────────────────────────────────────────────");
+                Console.WriteLine("📱 Browser is now open. Please:");
+                Console.WriteLine("  1. Log in to Dexsport using your Web3 wallet or email");
+                Console.WriteLine("  2. Wait for the page to fully load");
+                Console.WriteLine("  3. Return to this terminal and press ENTER");
+                Console.WriteLine("────────────────────────────────────────────────────────");
+                Console.ReadLine();
+                Console.WriteLine("✓ You pressed ENTER. Proceeding with automated test flow...\n");
+
+                // Step 4: Let the main scraper try to locate the bet (it handles iframe switching, modal/tab clicks, etc.)
+                Console.WriteLine("[STEP 4] Asking DexsportSeleniumScraper to lookup the bet (same logic as main flow)...");
+                try
+                {
+                    var scraper = new DexsportSeleniumScraper(driver, headless: false);
+                    // Use stored references: ReferenceId and EventId
+                    var lookup = scraper.LookupTicketStatusAsync(storedBet.ReferenceId ?? string.Empty, storedBet.EventId ?? string.Empty).GetAwaiter().GetResult();
+                    Console.WriteLine($"✓ LookupTicketStatusAsync result: {lookup}\n");
+
+                    if (!string.IsNullOrWhiteSpace(lookup))
+                    {
+                        // If LookupTicketStatusAsync returned a short status or JSON, prefer it and skip manual clicks
+                        Console.WriteLine("[STEP 4] Using LookupTicketStatusAsync result for UI status extraction.");
+                        // If the result looks like JSON, try to parse status/tab/fullText
+                        try
+                        {
+                            var parsed = JsonSerializer.Deserialize<Dictionary<string, object>>(lookup);
+                            string? uiStatusFromLookup = null;
+                            if (parsed != null)
+                            {
+                                if (parsed.ContainsKey("status")) uiStatusFromLookup = parsed["status"]?.ToString();
+                                if (string.IsNullOrWhiteSpace(uiStatusFromLookup) && parsed.ContainsKey("fullText")) uiStatusFromLookup = parsed["fullText"]?.ToString();
+                            }
+                            if (string.IsNullOrWhiteSpace(uiStatusFromLookup)) uiStatusFromLookup = lookup;
+
+                            Console.WriteLine($"[STEP 4] UI status (from scraper): {uiStatusFromLookup}");
+                            // Use this as the UI status and skip to comparison
+                            string storedParsedLookup = ParseStatus(storedBet.Status);
+                            string uiParsedLookup = ParseStatus(uiStatusFromLookup);
+
+                            Console.WriteLine($"✓ Stored Status parsed: {storedParsedLookup}");
+                            Console.WriteLine($"✓ UI Status parsed: {uiParsedLookup}\n");
+
+                            bool matchLookup = storedParsedLookup == uiParsedLookup;
+                            Console.WriteLine($"Status Match: {(matchLookup ? "YES ✅" : "NO ❌")}");
+
+                            // Save result and finish early
+                            SaveTestResult(new SettledBetTestResult
+                            {
+                                Timestamp = DateTime.UtcNow.ToString("O"),
+                                BetId = BET_ID_TO_TEST,
+                                EventId = storedBet.EventId,
+                                StoredStatusRaw = storedBet.Status,
+                                UIStatusRaw = uiStatusFromLookup,
+                                StoredStatusParsed = storedParsedLookup,
+                                UIStatusParsed = uiParsedLookup,
+                                StatusMatch = matchLookup,
+                                TestPassed = matchLookup,
+                                Message = matchLookup ? "✅ PASSED - Statuses match!" : "❌ FAILED - Statuses don't match"
+                            });
+
+                            Console.WriteLine("\n[SUCCESS] Test completed! Result saved to session/test_settled_status.json");
+                            Console.WriteLine("Browser window will close in 10 seconds...");
+                            Thread.Sleep(10000);
+                            return;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"⚠ Failed to parse LookupTicketStatusAsync result: {ex.Message}");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"⚠ Error invoking LookupTicketStatusAsync: {ex.Message}\n");
+                }
+
+                // Step 5: Wait for modal to load
+                Console.WriteLine("[STEP 5] ⏳ Waiting 15 seconds for modal to load...");
+                for (int i = 0; i < 15; i++)
+                {
+                    Console.Write(".");
+                    Thread.Sleep(1000);
+                }
+                Console.WriteLine("\n✓ Modal should be open\n");
+
+                // Step 6: Click Settled tab using JavaScript
+                Console.WriteLine("[STEP 6] 🤖 Automatically clicking 'Settled' tab via JavaScript...");
+                Thread.Sleep(1000);
+                
+                try
+                {
+                    // Use the same Settled tab script the main scraper uses (tries multiple selectors and ensures active class)
+                    string settledScript = @"try {
+                                console.log('[SETTLED TAB] Looking for Settled tab to click...');
+
+                                // Try multiple selectors for Settled tab
+                                const tabSelectors = [
+                                    '.games-tab',
+                                    '.games-tabs .games-tab',
+                                    '[class*=games-tab]',
+                                    'div[class*=tab]',
+                                    'button[class*=tab]'
+                                ];
+
+                                for (let selector of tabSelectors) {
+                                    const tabs = document.querySelectorAll(selector);
+                                    console.log('[SETTLED TAB] Selector:', selector, 'Found:', tabs.length, 'tabs');
+
+                                    for (let tab of tabs) {
+                                        const tabText = tab.textContent.trim();
+                                        console.log('[SETTLED TAB] Checking tab:', tabText);
+
+                                        // EXACT MATCH for 'Settled'
+                                        if (tabText === 'Settled' || tabText.toLowerCase() === 'settled') {
+                                            console.log('[SETTLED TAB] ✓ Found Settled tab, clicking...');
+
+                                            // Click using both methods to ensure it works
+                                            tab.click();
+                                            tab.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+
+                                            // Add _active class if needed (some sites use this for styling)
+                                            tab.classList.add('_active');
+
+                                            // Remove _active from other tabs
+                                            const allTabs = document.querySelectorAll(selector);
+                                            allTabs.forEach(t => {
+                                                if (t !== tab) {
+                                                    t.classList.remove('_active');
+                                                }
+                                            });
+
+                                            return 'Clicked Settled tab: ' + tabText + ' (class updated: ' + tab.className + ')';
+                                        }
+                                    }
+                                }
+
+                                return 'ERROR: Settled tab not found! Searched selectors: ' + tabSelectors.join(', ');
+                            } catch(e){
+                                console.error('[SETTLED TAB ERROR]:', e);
+                                return 'Error: ' + e.message;
+                            }";
+
+                    var settledResult = ((IJavaScriptExecutor)driver).ExecuteScript(settledScript);
+                    Console.WriteLine($"✓ Settled tab click result: {settledResult}\n");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"⚠ Error clicking Settled tab: {ex.Message}\n");
+                }
+
+                // Step 7: Wait for Settled tab to load
+                Console.WriteLine("[STEP 7] ⏳ Waiting 10 seconds for Settled tab content to load...");
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.Write(".");
+                    Thread.Sleep(1000);
+                }
+                Console.WriteLine("\n✓ Settled tab ready\n");
+                
+                // Wait 20 seconds after user presses Enter
+                for (int i = 0; i < 20; i++)
+                {
+                    if (i % 5 == 0)
+                        Console.WriteLine($"   ({20 - i} seconds remaining)");
+                    Thread.Sleep(1000);
+                }
+                Console.WriteLine($"✓ Bet search starting...\n");
+
+                // Step 7: Wait 20 seconds for Settled tab to fully load before searching
+                Console.WriteLine($"[STEP 6] Waiting 20s for Settled tab to load bet data...");
+                for (int i = 0; i < 20; i++)
+                {
+                    if (i % 5 == 0)
+                        Console.WriteLine($"   ({20 - i} seconds remaining)");
+                    Thread.Sleep(1000);
+                }
+                Console.WriteLine($"✓ Ready to search\n");
+                
+                // Step 7: Find bet in UI
+                Console.WriteLine($"[STEP 7] Searching for bet {BET_ID_TO_TEST} in Settled bets...");
+                string uiStatus = FindBetStatusInUI(BET_ID_TO_TEST);
+                
+                // Debug: Print page source snippet
+                Console.WriteLine($"\n[DEBUG] Page source (first 500 chars):");
+                string pageSource = driver.PageSource;
+                Console.WriteLine(pageSource.Substring(0, Math.Min(500, pageSource.Length)));
+                
+                // Debug: Print all text content from page
+                Console.WriteLine($"\n[DEBUG] Full page text content (first 800 chars):");
+                string pageText = driver.FindElement(By.TagName("body")).Text;
+                Console.WriteLine(pageText.Substring(0, Math.Min(800, pageText.Length)));
+                
+                if (uiStatus == null)
+                {
+                    Console.WriteLine($"\n✗ Bet {BET_ID_TO_TEST} not found in Settled tab UI");
+                    uiStatus = "NOT_FOUND";
+                }
+                else
+                {
+                    Console.WriteLine($"\n✓ Found bet in UI");
+                    Console.WriteLine($"  UI Status (first 100 chars): {(uiStatus.Length > 100 ? uiStatus.Substring(0, 100) + "..." : uiStatus)}\n");
+                }
+
+                // Step 8: Parse both statuses
+                Console.WriteLine("[STEP 8] Parsing statuses with BetStatusParser...");
+                string storedParsed = ParseStatus(storedBet.Status);
+                string uiParsed = ParseStatus(uiStatus);
+
+                Console.WriteLine($"✓ Stored Status parsed: {storedParsed}");
+                Console.WriteLine($"✓ UI Status parsed: {uiParsed}\n");
+
+                // Step 9: Compare and report
+                Console.WriteLine("[STEP 9] Comparison Results:");
+                Console.WriteLine("─────────────────────────────────────────────────────────");
+                Console.WriteLine($"Bet ID:                {BET_ID_TO_TEST}");
+                Console.WriteLine($"EventId:               {storedBet.EventId}");
+                Console.WriteLine($"Stored Status Raw:     {(storedBet.Status.Length > 60 ? storedBet.Status.Substring(0, 60) + "..." : storedBet.Status)}");
+                Console.WriteLine($"UI Status Raw:         {(uiStatus.Length > 60 ? uiStatus.Substring(0, 60) + "..." : uiStatus)}");
+                Console.WriteLine($"Stored Parsed:         {storedParsed}");
+                Console.WriteLine($"UI Parsed:             {uiParsed}");
+
+                bool match = storedParsed == uiParsed;
+                Console.WriteLine($"Status Match:          {(match ? "✓ YES" : "✗ NO")}");
+                Console.WriteLine("─────────────────────────────────────────────────────────\n");
+
+                // Step 10: Final result
+                Console.WriteLine("════════════════════════════════════════════════════════");
+                bool testPassed = !string.IsNullOrEmpty(uiStatus) && uiStatus != "NOT_FOUND" && match;
+                
+                if (testPassed)
+                {
+                    Console.WriteLine($"✓ TEST PASSED");
+                    Console.WriteLine($"✓ Successfully fetched and parsed bet status: {storedParsed}");
+                }
+                else
+                {
+                    Console.WriteLine($"✗ TEST FAILED");
+                    if (uiStatus == "NOT_FOUND")
+                        Console.WriteLine($"  Reason: Bet not found in UI");
+                    else if (!match)
+                        Console.WriteLine($"  Reason: Status mismatch (Stored: {storedParsed}, UI: {uiParsed})");
+                }
+                Console.WriteLine("════════════════════════════════════════════════════════\n");
+
+                // Save result
+                SaveTestResult(new SettledBetTestResult
+                {
+                    Timestamp = DateTime.UtcNow.ToString("O"),
+                    BetId = BET_ID_TO_TEST,
+                    EventId = storedBet.EventId,
+                    StoredStatusRaw = storedBet.Status,
+                    UIStatusRaw = uiStatus,
+                    StoredStatusParsed = storedParsed,
+                    UIStatusParsed = uiParsed,
+                    StatusMatch = match,
+                    TestPassed = testPassed,
+                    Message = testPassed ? "PASSED" : "FAILED - " + (uiStatus == "NOT_FOUND" ? "Bet not found" : "Status mismatch")
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"✗ Test Error: {ex.Message}");
+                Console.WriteLine($"   {ex.StackTrace}");
+            }
+            finally
+            {
+                if (driver != null)
+                {
+                    Console.WriteLine("\n════════════════════════════════════════════════════════");
+                    Console.WriteLine("[KEEP BROWSER OPEN] The browser is still open!");
+                    Console.WriteLine("You can now manually verify the data on the screen.");
+                    Console.WriteLine("Press ENTER in terminal to close the browser and exit.");
+                    Console.WriteLine("════════════════════════════════════════════════════════\n");
+                    
+                    Console.ReadLine();
+                    
+                    Console.WriteLine("\n[CLEANUP] Closing browser...");
+                    try
+                    {
+                        driver.Quit();
+                        Console.WriteLine("✓ Browser closed\n");
+                    }
+                    catch { }
+                }
+            }
+        }
+
+        void InitializeDriver()
+        {
+            var options = new ChromeOptions();
+            options.AddArgument("--no-sandbox");
+            options.AddArgument("--disable-dev-shm-usage");
+            options.AddArgument("--disable-blink-features=AutomationControlled");
+            // Run in visible mode so you can see what's happening
+            
+            driver = new ChromeDriver(options);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Window.Maximize();
+        }
+
+        BetStatusTestRecord LoadStoredBet(string betId)
+        {
+            try
+            {
+                string filePath = "bin/Debug/net8.0/session/placed_bets.json";
+                if (!File.Exists(filePath))
+                    return null;
+
+                string json = File.ReadAllText(filePath);
+                var bets = JsonSerializer.Deserialize<List<BetStatusTestRecord>>(json);
+
+                return bets?.FirstOrDefault(b =>
+                    b.EventId == betId ||
+                    b.RemoteReference == betId ||
+                    b.ReferenceId == betId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading stored bet: {ex.Message}");
+                return null;
+            }
+        }
+
+        bool ClickMyBets()
+        {
+            try
+            {
+                // Try multiple selectors
+                var selectors = new[]
+                {
+                    "//button[contains(text(), 'My Bets')]",
+                    "//a[contains(text(), 'My Bets')]",
+                    "//button[contains(text(), 'My bets')]",
+                    "//*[contains(@class, 'my-bets')]//button",
+                    "//div[contains(@class, 'navbar')]//button[contains(., 'Bets')]"
+                };
+
+                foreach (var selector in selectors)
+                {
+                    try
+                    {
+                        var elements = driver.FindElements(By.XPath(selector));
+                        if (elements.Count > 0)
+                        {
+                            elements.First().Click();
+                            return true;
+                        }
+                    }
+                    catch { }
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error clicking My Bets: {ex.Message}");
+                return false;
+            }
+        }
+
+        bool ClickSettledTab()
+        {
+            try
+            {
+                // Try multiple selectors
+                var selectors = new[]
+                {
+                    "//button[contains(text(), 'Settled')]",
+                    "//span[contains(text(), 'Settled')]",
+                    "//div[contains(@class, 'games-tab') and contains(text(), 'Settled')]",
+                    "//*[contains(@class, 'tab') and contains(text(), 'Settled')]"
+                };
+
+                foreach (var selector in selectors)
+                {
+                    try
+                    {
+                        var elements = driver.FindElements(By.XPath(selector));
+                        if (elements.Count > 0)
+                        {
+                            elements.First().Click();
+                            Thread.Sleep(2000);
+                            return true;
+                        }
+                    }
+                    catch { }
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error clicking Settled tab: {ex.Message}");
+                return false;
+            }
+        }
+
+        string FindBetStatusInUI(string betId)
+        {
+            try
+            {
+                // Get all bet rows - try different selectors separately
+                var rows = new List<IWebElement>();
+                
+                try
+                {
+                    rows.AddRange(driver.FindElements(By.XPath("//div[@class*='mybets-list__item']")));
+                }
+                catch { }
+
+                try
+                {
+                    rows.AddRange(driver.FindElements(By.XPath("//tr")));
+                }
+                catch { }
+
+                try
+                {
+                    rows.AddRange(driver.FindElements(By.XPath("//div[@class*='bet-row']")));
+                }
+                catch { }
+
+                Console.WriteLine($"   Found {rows.Count} potential bet rows");
+                
+                // Print all row texts for debugging
+                if (rows.Count > 0)
+                {
+                    Console.WriteLine($"   [DEBUG] Row contents:");
+                    for (int i = 0; i < Math.Min(5, rows.Count); i++)
+                    {
+                        try
+                        {
+                            string rowText = rows[i].Text;
+                            Console.WriteLine($"     Row {i+1} (first 150 chars): {(rowText.Length > 150 ? rowText.Substring(0, 150) + "..." : rowText)}");
+                        }
+                        catch { }
+                    }
+                }
+
+                foreach (var row in rows)
+                {
+                    try
+                    {
+                        string rowText = row.Text;
+                        if (rowText.Contains(betId))
+                        {
+                            Console.WriteLine($"   ✓ Found row containing {betId}");
+                            
+                            // Try to find status element
+                            try
+                            {
+                                var statusElements = row.FindElements(By.XPath(".//*[contains(text(), 'WON') or contains(text(), 'LOST') or contains(text(), 'VOID') or contains(text(), 'Win') or contains(text(), 'Lost')]"));
+                                if (statusElements.Count > 0)
+                                {
+                                    return statusElements.First().Text;
+                                }
+                            }
+                            catch { }
+
+                            // Fallback: return entire row text
+                            return rowText;
+                        }
+                    }
+                    catch { }
+                }
+
+                Console.WriteLine($"   ⚠ Bet {betId} not found in any row");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"⚠ Error searching UI: {ex.Message}");
+            }
+
+            return null;
+        }
+
+        string ParseStatus(string rawStatus)
+        {
+            if (string.IsNullOrWhiteSpace(rawStatus))
+                return "EMPTY";
+
+            string upper = rawStatus.ToUpperInvariant();
+
+            if (upper.Contains("PENDING_ACCEPTANCE"))
+                return "PENDING_ACCEPTANCE";
+            if (upper.Contains("PENDING"))
+                return "PENDING";
+            
+            // The Dexsport status blob contains both "WIN" (the status) and "WINNERODD" (odds label)
+            // We need to check if "WIN" appears twice (once as status, once in WINNERODD)
+            if (upper.Contains("WIN"))
+            {
+                // Count occurrences of "WIN"
+                int winCount = 0;
+                int index = 0;
+                while ((index = upper.IndexOf("WIN", index)) != -1)
+                {
+                    winCount++;
+                    index += 3;
+                }
+                
+                // If "WIN" appears at least twice, one is likely the status and one is in "WINNERODD"
+                if (winCount >= 2)
+                    return "WON";
+                
+                // If "WIN" appears once and it's NOT part of "WINNERODD"
+                if (winCount == 1 && !upper.Contains("WINNERODD"))
+                    return "WON";
+            }
+            
+            if (upper.Contains("LOST") || upper.Contains("LOSE"))
+                return "LOST";
+            if (upper.Contains("VOID"))
+                return "VOID";
+            if (upper.Contains("REJECT"))
+                return "REJECTED";
+            if (upper.Contains("ACCEPT"))
+                return "ACCEPTED";
+
+            return "UNKNOWN";
+        }
+
+        void SaveTestResult(SettledBetTestResult result)
+        {
+            try
+            {
+                string filePath = "bin/Debug/net8.0/session/test_settled_status.json";
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+
+                string json = JsonSerializer.Serialize(result, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(filePath, json);
+
+                Console.WriteLine($"✓ Test result saved to: {filePath}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"✗ Failed to save test result: {ex.Message}");
+            }
+        }
+    }
+}
