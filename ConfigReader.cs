@@ -3,12 +3,13 @@ using IniParser.Model;
 
 class ConfigReader
 {
+
     public int NumMatchesPerCycle { get; private set; }
     public double PercentWagerPerCycle { get; private set; }
     public int MatchTimeOutDuration { get; private set; }
     public string Currency { get; private set; }
     public int DefaultStakeAmount { get; private set; }
-
+    public string TimeZoneId { get; private set; } = "Auto";
     public string ApiKey { get; set; }
 
     public ConfigReader(string path)
@@ -22,5 +23,7 @@ class ConfigReader
         Currency = data["AppSettings"]["Currency"];
         DefaultStakeAmount = int.TryParse(data["AppSettings"]["DefaultStakeAmount"], out int stake) ? stake : 10;
         ApiKey = data["AppSettings"]["APIKey"];
+        if (data["AppSettings"].ContainsKey("TimeZone"))
+            TimeZoneId = data["AppSettings"]["TimeZone"]?.Trim() ?? "Auto";
     }
 }

@@ -28,7 +28,7 @@ namespace TennisScraper
     class MainProgram
     {
     // Static fields
-    private const string LOG_FILE = "tor_log.txt";
+    private static readonly string LOG_FILE = Path.Combine("session", "tor_log.txt");
     private static DataScraper? Scraper = null;
     private static readonly object CsvLock = new object();
     private static ConfigReader config = new ConfigReader("Config.ini");
@@ -782,16 +782,26 @@ namespace TennisScraper
                             {
                                 try
                                 {
-                                    // Use Pakistan Standard Time (UTC+5) for match time calculation
-                                    TimeZoneInfo pakistanTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Pakistan Standard Time");
+                                    // Time zone handling: use config or auto-detect
+                                    TimeZoneInfo matchTimeZone;
+                                    if (config.TimeZoneId.Equals("Auto", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        matchTimeZone = TimeZoneInfo.Local;
+                                        Log.Information($"[TIMEZONE] Using system time zone: {matchTimeZone.Id}");
+                                    }
+                                    else
+                                    {
+                                        matchTimeZone = TimeZoneInfo.FindSystemTimeZoneById(config.TimeZoneId);
+                                        Log.Information($"[TIMEZONE] Using configured time zone: {matchTimeZone.Id}");
+                                    }
                                     DateTime localMatchTime = DateTime.Parse(match.CutOffTime, CultureInfo.InvariantCulture, DateTimeStyles.None);
                                     localMatchTime = DateTime.SpecifyKind(localMatchTime, DateTimeKind.Unspecified);
-                                    DateTime utcMatchTime = TimeZoneInfo.ConvertTimeToUtc(localMatchTime, pakistanTimeZone);
+                                    DateTime utcMatchTime = TimeZoneInfo.ConvertTimeToUtc(localMatchTime, matchTimeZone);
                                     TimeSpan timeUntilMatch = utcMatchTime - DateTime.UtcNow;
-                                    if (timeUntilMatch.TotalHours < 2.0)
+                                    if (timeUntilMatch.TotalMinutes < 30)
                                     {
-                                        Log.Information("❌ Skipped (Too Soon): {Home} vs {Away} — Starts in {Hours:F1}h (minimum 2h required)", 
-                                            match.HomePlayerName, match.AwayPlayerName, timeUntilMatch.TotalHours);
+                                        Log.Information("❌ Skipped (Too Soon): {Home} vs {Away} — Starts in {Minutes:F0}m (minimum 30m required)", 
+                                            match.HomePlayerName, match.AwayPlayerName, timeUntilMatch.TotalMinutes);
                                         tooSoonSkipped++;
                                         continue;
                                     }
@@ -1278,10 +1288,28 @@ namespace TennisScraper
                                     Log.Warning($"[{cycleLetter}] Could not update placed_bets.json: {ex.Message}");
                                 }
 
+                                // Remove this match from the thread's pending list after settlement
+                                lock (threadMatches)
+                                {
+                                    if (threadMatches.Contains(match))
+                                    {
+                                        threadMatches.Remove(match);
+                                        Log.Information($"[{cycleLetter}] Removed match {match.MatchId} from pending list after settlement.");
+                                    }
+                                }
+
+                                // Wait 10 seconds before moving to the next bet/cycle
+                                Log.Information($"[{cycleLetter}] Waiting 10 seconds before moving to next bet/cycle after settlement.");
+                                await Task.Delay(10000);
+
+                                // Exit the polling loop immediately after settlement
                                 break;
                             }
-                            Log.Information($"[{cycleLetter}] Bet not settled yet. Waiting 30 minutes before next check...");
-                            await Task.Delay(nextWait);
+                            else
+                            {
+                                Log.Information($"[{cycleLetter}] Bet not settled yet. Waiting 30 minutes before next check...");
+                                await Task.Delay(nextWait);
+                            }
                         }
                         BrowserSemaphore.Release();
                         Log.Information($"[{cycleLetter}] Browser access released after settlement.");

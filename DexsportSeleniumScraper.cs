@@ -34,8 +34,8 @@ namespace TennisScraper
             // Stub: implement as needed
         }
 
-        // Loader wait logic for polling
-        private bool WaitForLoaderToDisappear(int timeoutSeconds = 30, int maxRetries = 3)
+        // Improved loader and site readiness logic
+        private bool WaitForLoaderOrSiteReady(int timeoutSeconds = 30, int maxRetries = 3)
         {
             if (_driver == null) return true;
             for (int attempt = 1; attempt <= maxRetries; attempt++)
@@ -46,17 +46,36 @@ namespace TennisScraper
                     bool loaderGone = wait.Until(drv =>
                     {
                         var loaderDivs = drv.FindElements(By.CssSelector("div[class*='z-[50]']"));
-                        // Loader is gone if not found or has 'hidden' class
-                        return loaderDivs.Count == 0 || loaderDivs.All(div => div.GetAttribute("class").Contains("hidden"));
+                        // Loader is considered visible if any div is displayed, does not have 'hidden', and is not CSS hidden
+                        bool loaderVisible = loaderDivs.Any(div =>
+                            div.Displayed &&
+                            !div.GetAttribute("class").Contains("hidden") &&
+                            div.GetCssValue("opacity") != "0" &&
+                            div.GetCssValue("display") != "none" &&
+                            div.GetCssValue("visibility") != "hidden"
+                        );
+                        return loaderDivs.Count == 0 || !loaderVisible;
                     });
                     if (loaderGone) return true;
                 }
                 catch (WebDriverTimeoutException)
                 {
-                    // Loader stuck, refresh and retry
                     Log.Warning($"[Loader] Loader stuck after {timeoutSeconds}s (attempt {attempt}/{maxRetries}). Refreshing page...");
                     _driver.Navigate().Refresh();
-                    System.Threading.Thread.Sleep(3000); // Wait for refresh
+                    System.Threading.Thread.Sleep(5000); // Wait for refresh
+                    // Wait for a key site element to confirm full load
+                    try
+                    {
+                        var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeoutSeconds));
+                        // Change selector below to a reliable element that always appears when site is ready
+                        wait.Until(drv => drv.FindElements(By.CssSelector("div[class*='main-content']")).Count > 0);
+                        Log.Information("[Loader] Site fully loaded after refresh.");
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Warning($"[Loader] Exception while waiting for site readiness: {ex.Message}");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -1685,10 +1704,10 @@ namespace TennisScraper
                 if (_driver == null)
                     throw new InvalidOperationException("No browser instance available. Please provide a shared ChromeDriver.");
 
-                // Wait for loader to disappear before polling for bet status
-                if (!WaitForLoaderToDisappear(30, 3))
+                // Wait for loader or site readiness before polling for bet status
+                if (!WaitForLoaderOrSiteReady(30, 3))
                 {
-                    Log.Error("[BET STATUS] Loader did not disappear before polling. Aborting status check.");
+                    Log.Error("[BET STATUS] Loader or site did not become ready before polling. Aborting status check.");
                     return null;
                 }
                 var js = (IJavaScriptExecutor)_driver;
